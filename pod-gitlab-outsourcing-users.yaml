@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-gitlab-outsourcing-users
+  namespace: gitlab
+  labels:
+    name: pod-gitlab-outsourcing-users
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  containers:
+  - name: gitlab-outsourcing-users
+    image: harbor.dev.21vianet.com/osam/gitlab-outsourcing-users:latest
+    resources:
+      limits:
+        cpu: 1
+        memory: 128Mi
+      requests:
+        cpu: 250m
+        memory: 64Mi
+    imagePullPolicy: IfNotPresent
+    # command: ["python","app/gitlab-outsourcing-users.py"]
+    command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
+  restartPolicy: Never

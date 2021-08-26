@@ -1,0 +1,11 @@
+before_script:
+    - export VERSION=$(git rev-parse --short HEAD)
+stages:
+    - runJob
+runJob:
+    stage: runJob
+    script:
+        - echo "开始构建程序"
+        - make build deploy runJob VERSION=${VERSION}
+
+
